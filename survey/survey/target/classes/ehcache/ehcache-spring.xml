@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+         xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"  
+         updateCheck="false" monitoring="autodetect" dynamicConfig="true">
+    
+    <!-- 
+                        磁盘存储:将缓存中暂时不使用的对象,转移到硬盘,类似于Windows系统的虚拟内存
+        path:指定在硬盘上存储对象的路径
+     -->
+    <!-- <diskStore path="java.io.tmpdir" /> -->
+    
+    <diskStore path="E:\ehcache" />
+    
+    
+
+    
+    <!--
+    	defaultCache:默认的缓存配置信息,如果不加特殊说明,则所有对象按照此配置项处理
+    	name:缓存名称
+        maxElementsInMemory: 在内存中缓存的最大对象数量
+        maxElementsOnDisk: 在磁盘上缓存的最大对象数量，默认值为0，表示不限制。 
+        eternal: 设定缓存对象保存的永久属性，默认为 false（当为 true 时 timeToIdleSeconds、timeToLiveSeconds 失效）
+        timeToIdleSeconds: 对象空闲时间（秒），指对象在多长时间没有被访问就会失效。只对eternal为false的有效。默认值0，表示一直可以访问
+        timeToLiveSeconds: 对象存活时间（秒），指对象从创建到失效所需要的时间。只对eternal为false的有效。默认值0，表示一直可以访问。
+        overflowToDisk: 如果内存中数据超过内存限制，是否要缓存到磁盘上
+        diskSpoolBufferSizeMB: DiskStore使用的磁盘大小，默认值30MB。每个cache使用各自的DiskStore
+        diskPersistent: 是否在磁盘上持久化。指重启jvm后，数据是否有效。默认为false
+        memoryStoreEvictionPolicy: 如果内存中数据超过内存限制，向磁盘缓存时的策略。默认值LRU，可选FIFO、LFU
+        clearOnFlush: 内存数量最大时是否清除
+        diskExpiryThreadIntervalSeconds：磁盘失效线程运行时间间隔，默认为120秒  
+     -->
+     
+   	<!-- 默认缓存配置 -->    
+    <defaultCache
+    	maxElementsOnDisk="1000000"
+    	maxElementsInMemory="10000"
+    	eternal="false"
+    	timeToIdleSeconds="120"
+    	timeToLiveSeconds="120"
+    	overflowToDisk="true"
+    	diskPersistent="false"
+    	diskExpiryThreadIntervalSeconds="120"
+    	memoryStoreEvictionPolicy="LRU"
+    />
+    
+    
+    <!-- 缓存配置 -->
+    <cache
+    	name="NaireCache" 
+        maxElementsOnDisk="20000"
+        maxElementsInMemory="2000"
+        eternal="false"
+        overflowToDisk="true"
+        diskPersistent="false"
+    />
+
+
+</ehcache>

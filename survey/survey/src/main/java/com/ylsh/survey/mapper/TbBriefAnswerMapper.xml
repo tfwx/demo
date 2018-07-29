@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ylsh.survey.mapper.TbBriefAnswerMapper" >
+  <resultMap id="BaseResultMap" type="com.ylsh.survey.pojo.TbBriefAnswer" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="question_id" property="questionId" jdbcType="BIGINT" />
+    <result column="answer_content" property="answerContent" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, question_id, answer_content
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ylsh.survey.pojo.TbBriefAnswerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_brief_answer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_brief_answer
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_brief_answer
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ylsh.survey.pojo.TbBriefAnswerExample" >
+    delete from tb_brief_answer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ylsh.survey.pojo.TbBriefAnswer" >
+    insert into tb_brief_answer (id, question_id, answer_content
+      )
+    values (#{id,jdbcType=BIGINT}, #{questionId,jdbcType=BIGINT}, #{answerContent,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="batchInsert" parameterType="list" useGeneratedKeys="true" keyProperty="id">
+    insert into tb_brief_answer (question_id, answer_content) values
+    <foreach collection="list" item="item" separator=",">
+		(#{item.questionId,jdbcType=BIGINT},
+		#{item.answerContent,jdbcType=VARCHAR})
+	</foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.ylsh.survey.pojo.TbBriefAnswer" >
+    insert into tb_brief_answer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="questionId != null" >
+        question_id,
+      </if>
+      <if test="answerContent != null" >
+        answer_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="questionId != null" >
+        #{questionId,jdbcType=BIGINT},
+      </if>
+      <if test="answerContent != null" >
+        #{answerContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ylsh.survey.pojo.TbBriefAnswerExample" resultType="java.lang.Integer" >
+    select count(*) from tb_brief_answer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_brief_answer
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.questionId != null" >
+        question_id = #{record.questionId,jdbcType=BIGINT},
+      </if>
+      <if test="record.answerContent != null" >
+        answer_content = #{record.answerContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_brief_answer
+    set id = #{record.id,jdbcType=BIGINT},
+      question_id = #{record.questionId,jdbcType=BIGINT},
+      answer_content = #{record.answerContent,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ylsh.survey.pojo.TbBriefAnswer" >
+    update tb_brief_answer
+    <set >
+      <if test="questionId != null" >
+        question_id = #{questionId,jdbcType=BIGINT},
+      </if>
+      <if test="answerContent != null" >
+        answer_content = #{answerContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ylsh.survey.pojo.TbBriefAnswer" >
+    update tb_brief_answer
+    set question_id = #{questionId,jdbcType=BIGINT},
+      answer_content = #{answerContent,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 根据问卷ID和答题者ID删除数据(答题者ID为空时，清除问卷所有答卷数据， 不为空时，只清除该一份答卷数据) -->
+  <delete id="deleteByNaireIdAndRespondentId" parameterType="Long" >
+	delete from
+	  tb_brief_answer 
+	where id in (
+	  select 
+	    record.answer_id 
+	  from
+	    tb_answer_record record 
+	    left join tb_question question 
+	      on record.question_id = question.id 
+	  where record.naire_id = #{naireId} 
+	    <if test="respondentId != null and respondentId > 0">
+	    	and record.respondent_id = #{respondentId} 
+	    </if>
+	    and question.category_id = 3
+	)
+  </delete>
+  
+</mapper>

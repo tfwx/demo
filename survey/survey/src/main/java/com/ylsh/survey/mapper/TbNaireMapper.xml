@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ylsh.survey.mapper.TbNaireMapper" >
+  <resultMap id="BaseResultMap" type="com.ylsh.survey.pojo.TbNaire" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="naire_desc" property="naireDesc" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="end_time" property="endTime" jdbcType="DATE" />
+    <result column="collect_count" property="collectCount" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="category_id" property="categoryId" jdbcType="TINYINT" />
+    <result column="citations_count" property="citationsCount" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="del_flag" property="delFlag" jdbcType="TINYINT" />
+    <result column="share" property="share" jdbcType="BIT" />
+    <result column="subject" property="subject" jdbcType="TINYINT" />
+    <result column="phone_style" property="phoneStyle" jdbcType="TINYINT" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <association property="user" column="user_id"
+		javaType="com.ylsh.survey.pojo.TbUser"
+		select="com.ylsh.survey.mapper.TbUserMapper.selectNickByPrimaryKey" />
+	<association property="category" column="category_id"
+		javaType="com.ylsh.survey.pojo.TbNaireCategory"
+		select="com.ylsh.survey.mapper.TbNaireCategoryMapper.selectByPrimaryKey" />
+	<collection property="questionList" column="id" ofType="TbQuestion"
+		select="com.ylsh.survey.mapper.TbQuestionMapper.selectByParentId" />
+  </resultMap>
+  
+  <resultMap id="SimpleResultMap" type="com.ylsh.survey.pojo.TbNaire" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="naire_desc" property="naireDesc" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="end_time" property="endTime" jdbcType="DATE" />
+    <result column="collect_count" property="collectCount" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="category_id" property="categoryId" jdbcType="TINYINT" />
+    <result column="citations_count" property="citationsCount" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="del_flag" property="delFlag" jdbcType="TINYINT" />
+    <result column="share" property="share" jdbcType="BIT" />
+    <result column="subject" property="subject" jdbcType="TINYINT" />
+    <result column="phone_style" property="phoneStyle" jdbcType="TINYINT" />
+  </resultMap>
+  
+  
+  <resultMap id="listResultMap" type="com.ylsh.survey.pojo.TbNaire">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="naire_desc" property="naireDesc" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="end_time" property="endTime" jdbcType="DATE" />
+    <result column="collect_count" property="collectCount" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="category_id" property="categoryId" jdbcType="TINYINT" />
+    <result column="citations_count" property="citationsCount" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <association property="user" column="user_id"
+		javaType="com.ylsh.survey.pojo.TbUser"
+		select="com.ylsh.survey.mapper.TbUserMapper.selectNickByPrimaryKey" />
+	<association property="category" column="category_id"
+		javaType="com.ylsh.survey.pojo.TbNaireCategory"
+		select="com.ylsh.survey.mapper.TbNaireCategoryMapper.selectByPrimaryKey" />
+	<collection property="questionList" column="id" ofType="TbQuestion"
+		select="com.ylsh.survey.mapper.TbQuestionMapper.selectSimpleByParentId" />
+  </resultMap>
+  
+  
+  <sql id="List_Column_List" >
+    naire.id, title, naire_desc, create_time, naire.end_time, user_id, category_id, 
+    citations_count, status
+  </sql>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, title, naire_desc, create_time, end_time, user_id, category_id, 
+    citations_count, status, del_flag, share, subject, phone_style, password
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ylsh.survey.pojo.TbNaireExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_naire
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_naire
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_naire
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ylsh.survey.pojo.TbNaireExample" >
+    delete from tb_naire
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ylsh.survey.pojo.TbNaire" useGeneratedKeys="true" keyProperty="id">
+    insert into tb_naire (id, title, naire_desc, 
+      create_time, end_time, 
+      user_id, category_id, citations_count, 
+      status, del_flag, share, 
+      subject)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{naireDesc,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=DATE}, #{endTime,jdbcType=DATE},
+      #{userId,jdbcType=BIGINT}, #{categoryId,jdbcType=TINYINT}, #{citationsCount,jdbcType=BIGINT}, 
+      #{status,jdbcType=TINYINT}, #{delFlag,jdbcType=TINYINT}, #{share,jdbcType=BIT}, 
+      #{subject,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ylsh.survey.pojo.TbNaire" >
+    insert into tb_naire
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="naireDesc != null" >
+        naire_desc,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="citationsCount != null" >
+        citations_count,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="share != null" >
+        share,
+      </if>
+      <if test="subject != null" >
+        subject,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="naireDesc != null" >
+        #{naireDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=DATE},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=TINYINT},
+      </if>
+      <if test="citationsCount != null" >
+        #{citationsCount,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+      <if test="share != null" >
+        #{share,jdbcType=BIT},
+      </if>
+      <if test="subject != null" >
+        #{subject,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ylsh.survey.pojo.TbNaireExample" resultType="java.lang.Integer" >
+    select count(*) from tb_naire
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_naire
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.naireDesc != null" >
+        naire_desc = #{record.naireDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=DATE},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=DATE},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.categoryId != null" >
+        category_id = #{record.categoryId,jdbcType=TINYINT},
+      </if>
+      <if test="record.citationsCount != null" >
+        citations_count = #{record.citationsCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.delFlag != null" >
+        del_flag = #{record.delFlag,jdbcType=TINYINT},
+      </if>
+      <if test="record.share != null" >
+        share = #{record.share,jdbcType=BIT},
+      </if>
+      <if test="record.subject != null" >
+        subject = #{record.subject,jdbcType=TINYINT},
+      </if>
+      <if test="record.phoneStyle != null" >
+        phone_style = #{record.phoneStyle,jdbcType=TINYINT},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_naire
+    set id = #{record.id,jdbcType=BIGINT},
+      title = #{record.title,jdbcType=VARCHAR},
+      naire_desc = #{record.naireDesc,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=DATE},
+      end_time = #{record.endTime,jdbcType=DATE},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      category_id = #{record.categoryId,jdbcType=TINYINT},
+      citations_count = #{record.citationsCount,jdbcType=BIGINT},
+      status = #{record.status,jdbcType=TINYINT},
+      del_flag = #{record.delFlag,jdbcType=TINYINT},
+      share = #{record.share,jdbcType=BIT},
+      subject = #{record.subject,jdbcType=TINYINT},
+      phone_style = #{record.phoneStyle,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ylsh.survey.pojo.TbNaire" >
+    update tb_naire
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="naireDesc != null" >
+        naire_desc = #{naireDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=DATE},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=TINYINT},
+      </if>
+      <if test="citationsCount != null" >
+        citations_count = #{citationsCount,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+      <if test="share != null" >
+        share = #{share,jdbcType=BIT},
+      </if>
+      <if test="subject != null" >
+        subject = #{subject,jdbcType=TINYINT},
+      </if>
+      <if test="phoneStyle != null" >
+        phone_style = #{phoneStyle,jdbcType=TINYINT},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ylsh.survey.pojo.TbNaire" >
+    update tb_naire
+    set title = #{title,jdbcType=VARCHAR},
+      naire_desc = #{naireDesc,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      end_time = #{endTime,jdbcType=DATE},
+      user_id = #{userId,jdbcType=BIGINT},
+      category_id = #{categoryId,jdbcType=TINYINT},
+      citations_count = #{citationsCount,jdbcType=BIGINT},
+      status = #{status,jdbcType=TINYINT},
+      del_flag = #{delFlag,jdbcType=TINYINT},
+      share = #{share,jdbcType=BIT},
+      subject = #{subject,jdbcType=TINYINT},
+      phone_tyle = #{phoneStyle,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  
+  <!-- 查询问卷的基本统计数据 -->
+  <select id="getStatisticsData" resultMap="SimpleResultMap" parameterType="Long">
+  	select 
+	  naire.id,
+	  naire.title,
+	  naire.end_time,
+	  count(distinct record.respondent_id) as collect_count 
+	from
+	  tb_naire naire 
+	  left join tb_answer_record record 
+	    on record.naire_id = naire.id 
+	where naire.id = #{_parameter} and naire.del_flag = 0 	
+  </select>
+  
+  
+  
+  <update id="increaceCitationsCount" parameterType="long">
+	update tb_naire set citations_count = citations_count+1 where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 问卷列表查询（问卷库查询列表也是该SQL） -->
+  <select id="list" resultMap="listResultMap" parameterType="java.util.Map" >
+    select 
+    <include refid="List_Column_List" />, count(respondent.id) collect_count
+    from tb_naire naire
+    left join tb_respondent_info respondent on respondent.naire_id = naire.id  
+    where 1 = 1
+    	AND del_flag = 0
+    <if test="queryParameter.userId != null">
+   		AND user_id = #{queryParameter.userId}
+   	</if>
+   	<if test="queryParameter.keyWord != null and queryParameter.keyWord != '' ">
+   		AND (title LIKE CONCAT('%', #{queryParameter.keyWord}, '%') OR naire_desc LIKE CONCAT('%', #{queryParameter.keyWord}, '%'))
+   	</if>
+   	<if test="queryParameter.status != null">
+   		AND status = #{queryParameter.status}
+   	</if>
+   	<if test="queryParameter.nq_status != null">
+   		AND status != #{queryParameter.nq_status}
+   	</if>
+   	<if test="queryParameter.share != null">
+   		AND share = #{queryParameter.share}
+   	</if>
+   	<choose>
+   		<when test="queryParameter.category != null">
+   			AND category_id = #{queryParameter.category}
+   		</when>
+   		<otherwise>
+	   		<if test="queryParameter.parentCategory != null">
+		   		AND category_id IN (SELECT id FROM tb_naire_category WHERE parent_id = #{queryParameter.parentCategory})
+		   	</if>
+   		</otherwise>
+   	</choose>
+   	group by naire.id 
+   	<choose>
+   		<when test="queryParameter.order != null and queryParameter.order > 0">
+   			ORDER BY create_time ASC
+   		</when>
+   		<otherwise>
+   			ORDER BY
+   			<if test="queryParameter.citations != null and queryParameter.citations == true">
+		   		citations_count DESC, 
+		   	</if> 
+   			create_time DESC, id DESC
+   		</otherwise>
+   	</choose>
+  </select>
+  
+  <select id="getRecycledData" parameterType="Long" resultMap="SimpleResultMap">
+	  select 
+	  	  naire.id,
+		  naire.title,
+		  naire.create_time,
+		  naire.end_time,
+		  count(record.id) collect_count 
+		from
+		  tb_naire naire 
+		  left join tb_user u 
+		    on naire.user_id = u.id 
+		  left join tb_answer_record record 
+		    on naire.id = record.naire_id 
+		where naire.del_flag = 1 
+		  and u.id = #{_parameter} 
+		group by naire.id 
+  
+  </select>
+  
+  <select id="test" parameterType="Long" resultType="TbNaire">
+   SELECT 
+	  naire.id,
+	  naire.title,
+	  question.category_desc as "category.categoryDesc"
+	FROM
+	  tb_naire naire 
+	  LEFT JOIN tb_naire_category question 
+	    ON question.id = naire.category_id 
+		where naire.id = #{_parameter} 
+	
+  
+  </select>
+  
+  
+</mapper>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ylsh.survey.mapper.TbProvinceRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.ylsh.survey.pojo.TbProvinceRecord" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="naire_id" property="naireId" jdbcType="BIGINT" />
+    <result column="province_id" property="provinceId" jdbcType="INTEGER" />
+    <result column="ans_id" property="ansId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, naire_id, province_id, ans_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ylsh.survey.pojo.TbProvinceRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_province_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_province_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_province_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ylsh.survey.pojo.TbProvinceRecordExample" >
+    delete from tb_province_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ylsh.survey.pojo.TbProvinceRecord" >
+    insert into tb_province_record (id, naire_id, province_id, 
+      ans_id)
+    values (#{id,jdbcType=BIGINT}, #{naireId,jdbcType=BIGINT}, #{provinceId,jdbcType=INTEGER}, 
+      #{ansId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ylsh.survey.pojo.TbProvinceRecord" >
+    insert into tb_province_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="naireId != null" >
+        naire_id,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="ansId != null" >
+        ans_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="naireId != null" >
+        #{naireId,jdbcType=BIGINT},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="ansId != null" >
+        #{ansId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ylsh.survey.pojo.TbProvinceRecordExample" resultType="java.lang.Integer" >
+    select count(*) from tb_province_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_province_record
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.naireId != null" >
+        naire_id = #{record.naireId,jdbcType=BIGINT},
+      </if>
+      <if test="record.provinceId != null" >
+        province_id = #{record.provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.ansId != null" >
+        ans_id = #{record.ansId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_province_record
+    set id = #{record.id,jdbcType=BIGINT},
+      naire_id = #{record.naireId,jdbcType=BIGINT},
+      province_id = #{record.provinceId,jdbcType=INTEGER},
+      ans_id = #{record.ansId,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ylsh.survey.pojo.TbProvinceRecord" >
+    update tb_province_record
+    <set >
+      <if test="naireId != null" >
+        naire_id = #{naireId,jdbcType=BIGINT},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="ansId != null" >
+        ans_id = #{ansId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ylsh.survey.pojo.TbProvinceRecord" >
+    update tb_province_record
+    set naire_id = #{naireId,jdbcType=BIGINT},
+      province_id = #{provinceId,jdbcType=INTEGER},
+      ans_id = #{ansId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  
+  
+  
+  <resultMap id="AreaSourceMap" type="java.util.Map" >
+    <result property="rownum" column="rownum" jdbcType="INTEGER" javaType="int"/>
+    <result property="name" column="name" jdbcType="VARCHAR" />
+    <collection property="value" ofType="com.ylsh.survey.pojo.AreaSourceData">
+		<constructor>
+			<arg column="longitude" jdbcType="DECIMAL" />
+			<arg column="latitude" jdbcType="DECIMAL" />
+			<arg column="value" jdbcType="INTEGER" />
+		</constructor>
+	</collection>
+  </resultMap>
+  <select id="getAreaSourceData" resultMap="AreaSourceMap" parameterType="Long">
+	select 
+	  @rownum := @rownum + 1 as rownum,
+	  province.name,
+	  province.longitude,
+	  province.latitude,
+	  count(respondent.id) value 
+	from
+	  (select 
+	    @rownum := 0) r,
+	  tb_respondent_info respondent 
+	  left join tb_province province 
+	    on respondent.province_id = province.id 
+	where respondent.naire_id = #{_parameter} 
+	group by respondent.province_id 
+	order by value desc 
+  </select>
+</mapper>

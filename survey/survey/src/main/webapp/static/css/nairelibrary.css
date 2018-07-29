@@ -1,0 +1,330 @@
+* {
+	font-family: microsoft yahei;
+}
+
+.main {
+	width: 100%;
+	height: 100%;
+}
+
+.search {
+	margin-top: 3%;
+	text-align: center;
+	width: 100%;
+	height: 6%;
+	font-size: 16px;
+}
+
+.search select {
+	width: 7%;
+	height: 100%;
+	text-align: center;
+	padding-left: 27px;
+	border: lightGray solid 1px;
+	border-right: none;
+	outline: none;
+	font-size: inherit;
+}
+
+.search .searchTxt {
+	width: 40%;
+	height: 100%;
+	border: 1px lightGray solid;
+	padding-left: 20px;
+	outline: none;
+	font-size: inherit;
+}
+
+.search .searchBtn {
+	width: 7%;
+	height: 100%;
+	background: #009dff;
+	color: #fff;
+	text-align: center;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	font-size: inherit;
+	background-image: url(../image/search_ico.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.search .hotWord {
+	text-align: left;
+	margin: 5px;
+	color: gray;
+	margin-left: 23%;
+	width: auto;
+	font-size: 13px;
+}
+
+.search .hotWord a {
+	margin-right: 15px;
+	color: gray;
+	text-decoration: none;
+}
+
+.search .hotWord a:hover {
+	color: #009dff;
+}
+
+
+.content > div {
+	margin-top: 4%;
+	margin-left: 10%;
+	margin-right: 10%;
+	display: flex;
+	flex-direction: row;
+}	
+
+.content .naireCategory {
+	flex: 2;
+}
+
+.content .naireCategory .category {
+	width: auto;
+	background: #fff;
+	padding: 15px;
+}
+
+.category .cActive {
+	background: #6FC5FF;
+	color: #fff !important;
+}
+
+.content .category .title {
+	color: #000;
+	font-size: 18px;
+	margin-left: 10px;
+	margin-bottom: 7px;
+}
+
+.content .category .cc span {
+	color: gray;
+	padding-left: 10px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	display: block;
+	cursor: pointer;
+}
+
+.content .category .cc span:hover {
+	background: #A8DCFF !important;
+	color: #fff !important;
+}
+
+.content .naire {
+	flex: 8;
+	min-height: 80%;
+	background: #fff;
+	float: left;
+	margin-left: 2%;
+	color: gray;
+	padding-left: 1%;
+	padding-right: 1%;
+	padding-bottom: 1%;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+
+.naire .naireContent {
+	flex: 8;
+}
+
+.naire #page {
+	flex: 1;
+	margin-top: 20px;
+}
+
+.content .naire .naireBrief {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 2%;
+}
+
+.content .naire .naireBrief:hover {
+	background: rgba(100, 100, 100, 0.1);
+}
+
+.content .naire .naireBrief .nTitle {
+	max-width: 40vw;
+	font-size: 17px;
+	color: gray;
+	text-decoration: none;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	display: inline-block;
+}
+
+.content .naire .naireBrief .nTitle:hover {
+	color: #009dff;
+}
+
+.content .naire .qNum {
+	float: right;
+	background: lightGray;
+	color: #fff;
+	border-radius: 3px;
+	padding: 3px 5px;
+	font-size: 5px;
+	display: inline-block;
+}
+
+.content .naire .naireS {
+	margin-top: 7px;
+}
+
+.content .naire  .useNaire {
+	float: right;
+	border-radius: 3px;
+	background: #009dff;
+	color: #fff;
+	font-size: 5px;
+	padding: 3px 5px;
+	cursor: pointer;
+}
+
+.content .naire .naireDesc {
+	color: gray;
+}
+
+.footer {
+	width: 100%;
+	height: 15%;
+	bottom: 0;
+	float: left;
+	margin-top: 5%;
+	text-align: center;
+}
+
+.footer img {
+	position: relative;
+	margin-top: 2.5%;
+}
+
+.tip2 {
+	width: 100%;
+	text-align: center;
+	font-family: microsoft yahei;
+	font-size: 50px;
+	font-weight: bold;
+	color: #DDDDDD;
+	margin-top: 20%;
+}
+
+.content .naireCategory .categoryTip {
+	min-height: 8%;
+	margin-top: 20px;
+	background: #fff;
+	background-image: url(../image/tip_ico.png);
+	background-repeat: no-repeat;
+	background-position: center 10px;
+	background-size: 80% auto;
+	padding-top: 5px;
+}
+
+.categoryTip p {
+	color: gray;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	margin-top: 40px;
+	padding: 10px;
+	padding-left: 15px;
+}
+
+.mbbg {
+	background-image: url(../image/mbbg.png);
+	background-repeat: no-repeat;
+	background-size: auto auto;
+	background-position: left;
+	margin-left: 2%;
+	margin-bottom: 1%;
+	padding: 3px 27px;
+	padding-bottom: 3px;
+	font-size: 20px;
+	display: inline-block;
+}
+
+
+hr {
+	border: #eee 1px solid;
+	margin: 2%;
+}
+
+.rTemplate {
+	/* text-align: center; */
+}
+
+.rTemplate a {
+	color: #444;
+	font-size: 17px;
+	margin-bottom: 7px;
+	display: block;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.rTemplate a:hover {
+	color: #009dff;
+}
+
+.rTemplate .single {
+	width: 45.7%;
+	height: auto;
+	display: inline-block;
+	padding: 2%;
+	cursor: default;
+}
+
+.more {
+	font-size: 15px;
+	float: right;
+	color: #ccc;
+	margin-right: 2%;
+}
+
+.more:hover {
+	color: #009dff;
+}
+
+.goTop {
+	width: 44px;
+    height: 44px;
+    float: right;
+    right: 50px;
+    bottom: 50px;
+    background-image: url(../image/top_hj.png);
+    position: fixed;
+    display: none;
+}
+
+
+.pCategory {
+	width: 102%;
+	max-height: 8%;
+	display: flex;
+	margin-bottom: 25px;
+	margin-left: -1%;
+}
+
+.pCategory a {
+	background: #F8F8F8;
+	color: #4c4c4c;
+	flex: 1;
+	padding-top: 10px;
+	padding-bottom: 14px;
+	text-align: center;
+	font-size: 20px;
+	border-top: transparent 4px solid;
+	transition: none;
+}
+
+.pActive {
+	border-top: #009dff 4px solid!important;
+	background: #fff!important;
+	color: #009dff!important;
+}

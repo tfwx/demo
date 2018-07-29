@@ -1,0 +1,60 @@
+* {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: #EEEFF1;
+	font-family: microsoft yahei;
+}
+
+.header {
+	height: 80px;
+	line-height: 80px;
+	background: #484848;
+}
+
+.header a {
+	color: #fff;
+	background: none;
+	font-size: 30px;
+	text-decoration: none;
+	vertical-align: middle;
+	margin-left: 100px;
+	font-weight: 500;
+}
+
+.content {
+	height: 60%;
+	background-color: #fff;
+	text-align: center;
+}
+
+.content div {
+	height: auto;
+	background: none;
+	font-size: 25px;
+	color: gray;
+	text-align: center;
+	position: relative;
+	top: 40%;
+	margin-bottom: 30px;
+	font-weight: 500;
+}
+
+.content a {
+	color: #5089c1;
+	background: none;
+	text-decoration: none;
+	font-size: 25px;
+	font-weight: 500;
+}
+
+.footer {
+	margin-top: 30px;
+	text-align: center;
+	height: auto;
+}
+
+.footer img {
+	width: auto;
+	height: auto;
+}

@@ -1,0 +1,101 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: microsoft yahei;
+}
+
+body {
+	background: #EEEFF1;
+}
+
+.content {
+	width: 75%;
+	min-height: 100%;
+	margin: 30px 0px;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	background: #fff;
+}
+
+.content h1 {
+	background: #53a4f4;
+	color: #fff;
+	font-weight: 500;
+    padding: 20px 30px;
+}
+
+
+.content h1 a {
+    background-image: url(../../static/image/export_pdf.png);
+    margin-left: 10px;
+    width: 30px;
+    height: 30px;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    float: right;
+    margin-top: 7px;
+}
+
+.content .item {
+	padding: 4%;
+}
+
+.content .item h3 {
+	font-weight: 500;
+    border-left: #53a4f4 3px solid;
+    padding-left: 10px;
+    line-height: 18px;
+}
+
+.content .info {
+	padding-bottom: 0px;
+}
+
+.content .info table {
+	padding: 30px;
+    width: 100%;
+}
+
+.content .info table td {
+	padding: 10px 0px;
+	font-size: 15px;
+}
+
+
+.content .detail {
+	padding-top: 0px;
+}
+
+.content .detail .qItem:not(:last-child) {
+	border-bottom: 1px solid #f4f4f6;
+}
+
+
+.content .detail .qItem:nth-of-type(1) {
+	padding-top: 40px;
+}
+
+.content .detail .qItem div {
+	padding: 30px;
+}
+.content .detail .qItem div:first-child {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.content .detail .qItem div:not(:first-child) {
+	padding-top: 5px;
+    padding-bottom: 10px;
+    text-indent: 20px;
+}
+
+.content .detail .qItem div:last-child {
+    padding-bottom: 30px;
+}
+
+.error {
+	color: red;
+}
+

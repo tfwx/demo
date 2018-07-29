@@ -1,0 +1,274 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.main {
+	margin-left: 75px;
+}
+
+.header {
+	width: 100%;
+	height: 80px;
+	line-height: 80px;
+}
+
+.title {
+	float: left;
+	margin-left: 20px;
+	vertical-align: middle;
+	font-size: x-large;
+	
+	color: gray;
+}
+
+.num {
+	float: right;
+	vertical-align: middle;
+	color: gray;
+}
+
+.num span {
+	font-size: 20px;
+	color: #009DFF;
+	margin: 10px;
+}
+
+.operation {
+	float: right;
+	margin-right: 30px;
+	margin-left: 30px;
+	vertical-align: middle;
+}
+
+.operation a {
+	width: auto;
+	height: auto;
+	text-decoration: none;
+	background: #009DFF;
+	color: #fff;
+	font-size: 10px;
+	font-weight: bold;
+	padding: 10px;
+	padding-left: 30px;
+	padding-right: 30px;
+	border-radius: 5px;
+	margin-left: 10px;
+}
+
+.operation a:hover {
+	background: #3eb7ff;
+}
+
+.bar {
+	background: #FAFBFB;
+    padding: 10px 20px;
+    min-height: 18px;
+    border: #eee 1px solid;
+}
+
+.bar label {
+	font-size: 15px;
+	color: gray;
+}
+
+.bar .option {
+	display: inline;
+	float: right;
+}
+
+.bar>a {
+	color: #f97c7c;
+    margin-left: 35%;
+    font-size: 14px;
+}
+
+.content {
+	display: none;
+}
+
+.data_chart {
+	width: 83%;
+	height: 100%;
+	margin-left: 10%;
+	position: absolute;
+}
+
+.data_chart .tip {
+	color: lightGray;
+	font-size: 60px;
+	font-weight: bold;
+	font-family: sans-serif;
+	background-color: white;
+	font-family: \5FAE\8F6F\96C5\9ED1;
+	text-align: center;
+	margin-left: -100px;
+	margin-top: 15%;
+}
+
+.data_chart .chart {
+	width: 51%;
+	height: 59%;
+	float: left;
+}
+
+.data_chart .questionBox {
+	height: 59%;
+}
+
+.data_chart .questionBox .questionData {
+	float: left;
+	padding: 50px;
+	color: #333;
+	max-height: 400px;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	max-width: 40%;
+	display: block;
+	word-break: break-all;
+}
+
+.data_chart .questionBox .questionData .option {
+	margin-left: 20px;
+	margin-top: 10px;
+}
+
+.mask {
+	display: block;
+	top: 0;
+}
+
+.wave {
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	background: rgba(0, 0, 0, .1);
+	text-align: center;
+	position: fixed;
+	left: 45%;
+	transform: translateX(-50%)!important;
+	top: 50%;
+	transform: translateY(-50%)!important;
+}
+
+.wave span {
+	color: #fff;
+	font-size: 20px;
+	position: relative;
+	top: 48%;
+	transform: translateY(-50%);
+	z-index: 2;
+}
+
+.wave canvas {
+	position: fixed;
+	left: 50%;
+	transform: translateX(-50%)!important;
+	z-index: 1;
+}
+
+
+.reset {
+	position: fixed;
+	right: 30px;
+	bottom: 30px;
+	width: 58px;
+	height: 58px;
+	cursor: pointer;
+}
+
+.reset i {
+	width: 58px;
+	height: 58px;
+	background-image: url("../image/reset.png");
+	background-repeat: no-repeat;
+	display: block;
+	background-position: -174px 0px;
+}
+
+.reset a {
+    position: absolute;
+    top: 0px;
+    color: #fff;
+    font-size: 5px;
+    width: 58px;
+    height: 58px;
+    text-align: center;
+    line-height: 58px;
+    transition: 1s ease-in-out;
+}
+}
+
+.reset a:hover {
+	transform: scale(0.2);
+}
+
+
+ .eLoading {
+	background: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 999;
+}
+
+.eLoading>div {    
+    width: 50%;
+    height: 50%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+} 
+
+.bar span, .bar .option a  {
+	color: gray;
+	cursor: pointer;
+	font-size: 14px;
+}	
+.bar .option a {  
+	margin: 0px 10px;
+	min-width: 50px;
+    text-align: center;
+}
+.bar span {margin: 0px 5px; }
+.bar .option a.active { color: #009dff; }
+
+
+.area_chart {
+	width: 100%;
+	height: 100%;
+}
+
+.area_chart .chart{
+	width: auto;
+	height: 100%;
+}	
+
+
+.ans_list table {
+    width: 70%;
+    height: auto;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    border: #eee 1px solid;
+    font-size: 14px;
+    margin: 30px 0px;
+}
+
+.ans_list thead {
+	background: #efefef;
+}
+
+.ans_list td {
+	height: 35px;
+    padding: 0px 10px;
+}
+
+.ans_list td a {
+    color: #3eb7ff;
+    margin-right: 20px;
+    text-decoration: none;
+}

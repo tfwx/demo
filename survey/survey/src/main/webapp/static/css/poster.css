@@ -1,0 +1,219 @@
+body {
+	overflow: hidden;
+}
+
+.posterTable {
+	width: 90%;
+}
+
+.posterTable td {
+	height: 23vh;
+    width: 20%;
+    overflow: hidden;
+    position: relative;
+}
+
+
+
+.posterTable td img {
+	width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.poster_view {
+	flex:1.5;
+	position: relative;
+}
+
+.poster_view .preview {
+	width: 70%;
+    height: auto;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+    background-position: center;
+    background-size: auto 100%;
+    border-radius: 3vw;
+    background-repeat: no-repeat;
+}
+
+.poster_view .bg {
+	position: absolute;
+    width: 70%;
+    height: 95%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 2vw;
+    
+}
+
+.poster_view p {
+	position: absolute;
+    z-index: 999;
+    color: #fff;
+    left: 25%;
+}
+
+.poster_view .wj_ntitle {
+	font-size: 1.5vw;
+    bottom: 20%;
+}
+
+.poster_view .logo1 {
+	bottom: 17%;
+    font-size: 1vh;
+    transform: scale(0.7);
+    -webkit-transform-origin-x: 0;
+}
+
+.poster_view .logo2 {
+	bottom: 15%;
+    font-size: 1vh;
+    transform: scale(0.7);
+    -webkit-transform-origin-x: 0;
+}
+
+
+.poster .code {
+	position: absolute;
+    top: 18%;
+    width: 20%;
+    overflow: hidden;
+    left: 25%;
+    background: #fff;
+    padding: 5px;
+    z-index: 999;
+ }
+ 
+ .poster .code canvas {
+ 	width: 100%; 
+ }
+ 
+ .poster .code img {
+ 	width: 100%;
+}
+
+.poster .code span {
+	color: #000;
+    font-size: 1vw;
+    -webkit-transform-origin-x: 0;
+    -webkit-transform: scale(0.75);
+    display: block;
+    width: 100vw;
+}
+
+
+.poster a.upload {
+	width: 50%;
+    height: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url(../../static/image/poster/poster_upload.png);
+    display: block;
+    position: absolute;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.poster .download_btn {
+    color: #fff;
+    background: #2672ff;
+    padding: 10px 40px;
+    border-radius: 5px;
+    bottom: 20px;
+    position: absolute;
+    left: 20px;
+    cursor: pointer;
+}
+
+.poster .download_btn:hover {
+	background: #009dff;
+}
+
+.poster .share_box {
+	bottom: 4%;
+    position: absolute;
+    left: 45%;
+}
+
+.poster .share_box img {
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+
+
+.poster .link {
+	color: #aaa;
+    margin-left: 15px;
+    margin-top: 15px;
+    font-size: 15px;
+    border: #ccc 1px solid;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+
+.poster .link:before {
+	content: '问卷链接:';
+    margin-left: 10px;
+    color: #aaa;
+}
+
+.poster .naire_link {
+	width: 30vw;
+    border: none;
+    font-size: inherit;
+    color: inherit;
+    padding: 10px 20px;
+    padding-left: 5px;
+    outline: none;
+    background: transparent;
+}
+
+
+.poster .naire_link+a {
+	padding: 10px 25px;
+    font-size: inherit;
+    color: inherit;
+    border-left: #ccc 1px solid;
+}
+
+.poster .naire_link+a:hover {
+	background: #eee;
+	cursor: pointer;
+}
+
+
+.wxTip {
+    width: 100px;
+    min-width: 100px;
+    min-height: 100px;
+}
+
+.wxTip>div{
+	width: 100px;
+	height: 100px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.wxTip>div img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	
+}	
+
+.wxTip>div div{
+	display: none;
+}

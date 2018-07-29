@@ -1,0 +1,117 @@
+.popBox {
+	position: fixed;
+    display: none;
+    width: 35%;
+    height: 65%;
+    left: 50%;
+    top: 50%;
+    z-index: 11;
+    background: #fff;
+    border-radius: 10px;
+    padding-left: 5%;
+    padding-right: 4%;
+    transform: translate(-50%, -50%);
+}
+
+.title {
+	text-align: center;
+    margin-top: 8%;
+    margin-bottom: 5%;
+    font-size: 4.6vh;
+    color: #56a5f1;
+}
+
+.txt {
+	width: 94%;
+	height: 13%;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	border: 1px solid lightGray;
+	border-radius: 3px;
+	padding-left: 10px;
+	color: gray;
+	font-size: 2.3vh;
+}
+
+.txt::-webkit-input-placeholder {
+	font-weight: bold; 
+	font-size : 15px;
+	color: lightGray;	
+}
+
+.popLayer {
+	position: absolute;
+	display: none;
+	left: 0;
+	top: 0;
+	z-index: 10;
+	background: #000;
+	-moz-opacity: 0.6;
+	opacity: 0.5;
+	filter: alpha(opacity = 60);
+}
+
+.close_tc {
+	display: inline-block;
+	width: 22px;
+	height: 22px;
+	background: url(../image/gb_dl.png) no-repeat left center;
+	position: absolute;
+	right: 20px;
+	top: 20px;
+}
+
+.close_tc:hover {
+	background: url(../image/gb_dl.png) no-repeat right center;
+}
+
+.login_forget {
+	overflow: hidden;
+	position: relative;
+	z-index: 2;
+	line-height: 14px;
+}
+
+.login_forget label {
+	display: inline-block;
+	line-height: 14px;
+	float: left;
+}
+
+.login_forget label input {
+	vertical-align: middle;
+}
+
+.login_forget a {
+	display: inline-block;
+	color: #53a4f4;
+	line-height: 14px;
+	float: right;
+}
+
+.login_forget a:hover {
+	color: #5089c1;
+}
+
+.login_btn {
+	display: inline-block;
+	width: 100%;
+	border: 1px solid #56a5f1;
+	background: #56a5f1;
+	text-align: center;
+	border-radius: 4px;
+	color: #fff;
+	font-size: 2.5vh;
+	margin-top: 10%;
+	line-height: 7.7vh;
+	cursor: pointer;
+}
+
+ .login_btn:hover {
+	background: #75b6f5;
+}
+
+.warning {
+	color: red;
+	visibility: hidden;
+}

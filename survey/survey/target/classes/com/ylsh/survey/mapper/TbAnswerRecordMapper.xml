@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ylsh.survey.mapper.TbAnswerRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.ylsh.survey.pojo.TbAnswerRecord" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="naire_id" property="naireId" jdbcType="BIGINT" />
+    <result column="question_id" property="questionId" jdbcType="BIGINT" />
+    <result column="answer_id" property="answerId" jdbcType="BIGINT" />
+    <result column="respondent_id" property="respondentId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, naire_id, question_id, answer_id, respondent_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ylsh.survey.pojo.TbAnswerRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_answer_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_answer_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_answer_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ylsh.survey.pojo.TbAnswerRecordExample" >
+    delete from tb_answer_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ylsh.survey.pojo.TbAnswerRecord"
+  	useGeneratedKeys="true" keyProperty="id" >
+    insert into tb_answer_record (id, naire_id, question_id, 
+      answer_id, respondent_id)
+    values (#{id,jdbcType=BIGINT}, #{naireId,jdbcType=BIGINT}, #{questionId,jdbcType=BIGINT}, 
+      #{answerId,jdbcType=BIGINT}, #{respondentId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ylsh.survey.pojo.TbAnswerRecord"
+  	useGeneratedKeys="true" keyProperty="id" >
+    insert into tb_answer_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="naireId != null" >
+        naire_id,
+      </if>
+      <if test="questionId != null" >
+        question_id,
+      </if>
+      <if test="answerId != null" >
+        answer_id,
+      </if>
+      <if test="respondentId != null" >
+        respondent_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="naireId != null" >
+        #{naireId,jdbcType=BIGINT},
+      </if>
+      <if test="questionId != null" >
+        #{questionId,jdbcType=BIGINT},
+      </if>
+      <if test="answerId != null" >
+        #{answerId,jdbcType=BIGINT},
+      </if>
+      <if test="respondentId != null" >
+        #{respondentId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ylsh.survey.pojo.TbAnswerRecordExample" resultType="java.lang.Integer" >
+    select count(*) from tb_answer_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_answer_record
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.naireId != null" >
+        naire_id = #{record.naireId,jdbcType=BIGINT},
+      </if>
+      <if test="record.questionId != null" >
+        question_id = #{record.questionId,jdbcType=BIGINT},
+      </if>
+      <if test="record.answerId != null" >
+        answer_id = #{record.answerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.respondentId != null" >
+        respondent_id = #{record.respondentId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_answer_record
+    set id = #{record.id,jdbcType=BIGINT},
+      naire_id = #{record.naireId,jdbcType=BIGINT},
+      question_id = #{record.questionId,jdbcType=BIGINT},
+      answer_id = #{record.answerId,jdbcType=BIGINT},
+      respondent_id = #{record.respondentId,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ylsh.survey.pojo.TbAnswerRecord" >
+    update tb_answer_record
+    <set >
+      <if test="naireId != null" >
+        naire_id = #{naireId,jdbcType=BIGINT},
+      </if>
+      <if test="questionId != null" >
+        question_id = #{questionId,jdbcType=BIGINT},
+      </if>
+      <if test="answerId != null" >
+        answer_id = #{answerId,jdbcType=BIGINT},
+      </if>
+      <if test="respondentId != null" >
+        respondent_id = #{respondentId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ylsh.survey.pojo.TbAnswerRecord" >
+    update tb_answer_record
+    set naire_id = #{naireId,jdbcType=BIGINT},
+      question_id = #{questionId,jdbcType=BIGINT},
+      answer_id = #{answerId,jdbcType=BIGINT},
+      respondent_id = #{respondentId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+
+  
+  <!-- 保存答卷数据 -->
+  <insert id="insertRecord" parameterType="com.ylsh.survey.dto.NaireAnswerDataRecord" >
+    insert into tb_answer_record (naire_id, question_id, answer_id, respondent_id) values 
+    <foreach collection="record.optionAnswerList" item="answer" separator=",">
+	    (
+			#{record.naireId, jdbcType=BIGINT}, 
+			#{answer.questionId, jdbcType=BIGINT},
+			#{answer.id, jdbcType=BIGINT},
+			#{record.respondentInfoId, jdbcType=BIGINT}
+		)
+    </foreach>
+  </insert>
+  
+  <!-- 单份答卷映射map -->
+  <resultMap id="AnswerRecordMap" type="com.ylsh.survey.pojo.TbQuestion" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="question_desc" property="questionDesc" jdbcType="VARCHAR" />
+    <result column="category_id" property="categoryId" jdbcType="TINYINT" />
+    <collection column="{questionId=id, respondentId=respondent_id, categoryId=category_id}" property="optionList" ofType="com.ylsh.survey.pojo.TbOption"
+    	select="com.ylsh.survey.mapper.TbAnswerRecordMapper.getOptionAnswer" />
+  </resultMap>
+  
+  <!-- 查询答卷（答案）信息 -->
+  <select id="getOptionAnswer" resultType="com.ylsh.survey.pojo.TbOption" parameterType="java.util.Map">
+	  <choose>
+	  	<when test="categoryId == 1 or categoryId == 2">
+		  	select 
+			  opt.id,
+			  opt.option_desc as optiondesc 
+			from
+			  tb_option opt 
+			  left join tb_answer_record record 
+			    on record.answer_id = opt.id 
+			    and record.question_id = opt.question_id 
+			where opt.question_id = #{questionId} 
+			  and record.respondent_id = #{respondentId} 
+	  	</when>
+	  	<when test="categoryId == 3">
+	  		select 
+			  answer.id,
+			  answer.answer_content as optiondesc 
+			from
+			  tb_brief_answer answer 
+			  left join tb_answer_record record 
+			    on answer.id = record.answer_id 
+			    and record.question_id = answer.question_id 
+			where answer.question_id = #{questionId}
+			  and record.respondent_id = #{respondentId}  	
+	  	</when>
+	  	<otherwise>
+	  		select '数据异常' as optionDesc
+	  	</otherwise>
+	  </choose>	
+  </select>
+  
+  <!-- 根据答卷人ID查询答卷信息  -->
+  <select id="getDetailInfoByRespondent" resultMap="AnswerRecordMap" parameterType="java.util.Map">
+	select 
+	  ${respondentId} as respondent_id,
+	  question.id,
+	  question.question_desc,
+	  question.category_id
+	from
+	  tb_question question 
+	where question.naire_id = #{naireId}   
+  </select>
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  <!-- 主页统计数据查询 -->
+  <select id="getIndexStatistics" resultType="java.util.Map">
+  	select 
+	  (select 
+	    count(distinct (u.id)) 
+	  from
+	    tb_respondent_info respondent 
+	    left join tb_naire naire 
+	      on respondent.naire_id = naire.id 
+	    left join tb_user u 
+	      on naire.user_id = u.id) usercount,
+	  (select 
+	    count(record.id) 
+	  from
+	    tb_answer_record record) datacount 
+  </select>
+  
+  
+  
+  <!-- 统计数据封装map映射 -->
+  <resultMap id="ChartDataMap" type="com.ylsh.survey.pojo.TbQuestion" >
+  	<id column="id" property="id" jdbcType="BIGINT" />
+    <result column="question_desc" property="questionDesc" jdbcType="VARCHAR" />
+    <result column="category_id" property="categoryId" jdbcType="TINYINT" />
+    <collection property="optionList" ofType="com.ylsh.survey.pojo.TbOption">
+    	<result column="option_desc" property="optionDesc" jdbcType="VARCHAR" />
+   		<result column="select_count" property="selectCount" jdbcType="BIGINT" />
+    </collection>
+  </resultMap>
+  
+  
+   <!-- 查询答卷统计图数据      -->
+  <select id="chart" resultMap="ChartDataMap" parameterType="long">
+  	select 
+  	  question.id,
+	  question.question_desc,
+	  question.category_id,
+	  opt.option_desc,
+	  count(record.id) select_count
+	from
+	  tb_question question 
+	  left join tb_option opt 
+	    on opt.question_id = question.id 
+	  left join tb_answer_record record 
+	    on record.question_id = question.id 
+	    and record.answer_id = opt.id 
+	    and record.naire_id = question.naire_id 
+	where question.naire_id = #{_parameter} and question.category_id != 3 
+	group by question.id, opt.id 
+	order by question.order_number, opt.id
+  </select>
+  
+  
+  
+  <!-- 查询答卷数据（各个选项选择数量，排除简答题） -->
+  <select id="getNaireAnswerPercent" parameterType="Long" resultMap="ChartDataMap">
+  	select 
+	  question.id,
+	  question.category_id,
+	  question.question_desc,
+	  opt.option_desc,
+	  count(record.id) select_count 
+	from
+	  tb_question question 
+	  left join tb_option opt 
+	    on opt.question_id = question.id 
+	  left join tb_answer_record record 
+	    on record.question_id = question.id 
+	    and record.answer_id = opt.id 
+	    and record.naire_id = question.naire_id 
+	where question.naire_id = #{_parameter} 
+	  and question.category_id != 3 
+	group by question.id,
+	  opt.id 
+	order by question.order_number,
+	  opt.id 
+  </select>
+  
+  
+  
+    
+  <!-- 答卷分条详细数据SQL开始(用于导出数据) -->
+ 
+  <resultMap id="RespondentMap" type="com.ylsh.survey.pojo.TbRespondentInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="duration" property="duration" jdbcType="VARCHAR" />
+    <result column="browser" property="browser" jdbcType="VARCHAR" />
+    <result column="system" property="system" jdbcType="VARCHAR" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="naire_id" property="naireId" jdbcType="BIGINT" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+  	<association property="naire"  javaType="com.ylsh.survey.pojo.TbNaire">
+  		<id column="naire_id" property="id" jdbcType="BIGINT" />
+  		<result column="naire_title" property="title" jdbcType="VARCHAR" />  
+  		<collection property="questionList" ofType="com.ylsh.survey.pojo.TbQuestion" >
+  			<id column="question_id" property="id" jdbcType="BIGINT" />
+  			<result column="category_id" property="categoryId" jdbcType="BIGINT" />  		
+  			<result column="question_desc" property="questionDesc" jdbcType="VARCHAR" />  			
+  			<collection property="optionList" ofType="com.ylsh.survey.pojo.TbOption" >
+  				<result column="option_desc" property="optionDesc" jdbcType="VARCHAR" />  			
+  			</collection>  		
+  		</collection>
+	</association>
+  </resultMap>
+  
+  
+  
+  <select id="getRespondentNaireData" parameterType="Long" resultMap="RespondentMap">
+	select 
+	  fs.id,
+	  fs.start_time,
+	  fs.end_time,
+	  fs.duration,
+	  fs.browser,
+	  fs.system,
+	  fs.ip,
+	  fs.address,
+	  fs.naire_id,
+	  fs.naire_title,
+	  fs.question_id,
+	  fs.question_desc,
+	  FS.category_id,
+	  concat(
+	    ifnull(fs.answer_content, ''),
+	    ifnull(
+	      group_concat(
+	        char(
+	          find_in_set(fs.option_id, fs2.option_ids) + 64
+	        ) 
+	        order by fs.option_id separator ', '
+	      ),
+	      ''
+	    )
+	  ) option_desc 
+	from
+	  (select 
+	    (@i := @i + 1) rownum,
+	    respondent.*,
+	    naire.title naire_title,
+	    concat(province2.name, province1.name) address,
+	    question.id as question_id,
+	    question.question_desc,
+	    question.category_id,
+	    opt.id option_id,
+	    case
+	      when opt.id is null 
+	      then '' 
+	      else opt.option_desc 
+	    end option_desc,
+	    answer.answer_content 
+	  from
+	    (select @i := 0) i,
+	    tb_respondent_info respondent 
+	    left join tb_naire naire
+	      on respondent.naire_id = naire.id
+	    left join tb_province province1 
+	      on respondent.province_id = province1.id 
+	    left join tb_province province2 
+	      on province2.code = concat(left(province1.code, 2), '0000') 
+	    right join tb_question question 
+	      on question.naire_id = respondent.naire_id 
+	    left join tb_answer_record record 
+	      on record.respondent_id = respondent.id 
+	      and record.naire_id = respondent.naire_id 
+	      and record.question_id = question.id 
+	    left join tb_option opt 
+	      on record.answer_id = opt.id 
+	      and opt.question_id = question.id 
+	      and question.category_id != 3 
+	    left join tb_brief_answer answer 
+	      on record.answer_id = answer.id 
+	      and answer.question_id = question.id 
+	      and question.category_id = 3 
+	  where respondent.naire_id = #{_parameter} 
+	    and question.naire_id = respondent.naire_id 
+	  group by respondent.id,
+	    question.id,
+	    opt.id 
+	  order by respondent.start_time asc,
+	    question.order_number asc,
+	    opt.id asc) fs 
+	  left join 
+	    (select 
+	      question.id question_id,
+	      group_concat(opt.id) option_ids 
+	    from
+	      tb_question question 
+	      left join tb_option opt 
+	        on opt.question_id = question.id 
+	    where question.naire_id = #{_parameter}  
+	      and question.category_id != 3 
+	    group by question.id 
+	    order by question.order_number asc) fs2 
+	    on fs.question_id = fs2.question_id 
+	group by fs.id,
+	  fs.question_id 
+	order by fs.start_time,
+	  fs.rownum 
+	limit 0, 10000000 
+  
+  
+  </select>
+  
+  <!-- 答卷分条详细数据SQL结束 -->
+  
+  
+  
+</mapper>

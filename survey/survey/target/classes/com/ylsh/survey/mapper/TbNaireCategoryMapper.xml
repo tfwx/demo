@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ylsh.survey.mapper.TbNaireCategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.ylsh.survey.pojo.TbNaireCategory" >
+    <id column="id" property="id" jdbcType="TINYINT" />
+    <result column="category_desc" property="categoryDesc" jdbcType="VARCHAR" />
+    <result column="category_brief" property="categoryBrief" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="TINYINT" />
+    <association column="parent_id" property="parentNode" 
+    	javaType="com.ylsh.survey.pojo.TbNaireCategory"
+    	select="com.ylsh.survey.mapper.TbNaireCategoryMapper.selectByPrimaryKey"/>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, category_desc, category_brief, parent_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ylsh.survey.pojo.TbNaireCategoryExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_naire_category
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Byte" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_naire_category
+    where id = #{id,jdbcType=TINYINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte" >
+    delete from tb_naire_category
+    where id = #{id,jdbcType=TINYINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ylsh.survey.pojo.TbNaireCategoryExample" >
+    delete from tb_naire_category
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ylsh.survey.pojo.TbNaireCategory" >
+    insert into tb_naire_category (id, category_desc, category_brief, 
+      parent_id)
+    values (#{id,jdbcType=TINYINT}, #{categoryDesc,jdbcType=VARCHAR}, #{categoryBrief,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ylsh.survey.pojo.TbNaireCategory" >
+    insert into tb_naire_category
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="categoryDesc != null" >
+        category_desc,
+      </if>
+      <if test="categoryBrief != null" >
+        category_brief,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=TINYINT},
+      </if>
+      <if test="categoryDesc != null" >
+        #{categoryDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryBrief != null" >
+        #{categoryBrief,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ylsh.survey.pojo.TbNaireCategoryExample" resultType="java.lang.Integer" >
+    select count(*) from tb_naire_category
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_naire_category
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=TINYINT},
+      </if>
+      <if test="record.categoryDesc != null" >
+        category_desc = #{record.categoryDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.categoryBrief != null" >
+        category_brief = #{record.categoryBrief,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentId != null" >
+        parent_id = #{record.parentId,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_naire_category
+    set id = #{record.id,jdbcType=TINYINT},
+      category_desc = #{record.categoryDesc,jdbcType=VARCHAR},
+      category_brief = #{record.categoryBrief,jdbcType=VARCHAR},
+      parent_id = #{record.parentId,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ylsh.survey.pojo.TbNaireCategory" >
+    update tb_naire_category
+    <set >
+      <if test="categoryDesc != null" >
+        category_desc = #{categoryDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryBrief != null" >
+        category_brief = #{categoryBrief,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ylsh.survey.pojo.TbNaireCategory" >
+    update tb_naire_category
+    set category_desc = #{categoryDesc,jdbcType=VARCHAR},
+      category_brief = #{categoryBrief,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=TINYINT}
+    where id = #{id,jdbcType=TINYINT}
+  </update>
+  
+  
+  <select id="selectChildByParentId" resultType="Byte" parameterType="Byte" >
+  	SELECT id FROM tb_naire_category WHERE parent_id = #{_parameter}
+  </select>
+  
+  
+  
+  
+  
+</mapper>

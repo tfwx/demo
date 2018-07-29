@@ -1,0 +1,250 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: microsoft yahei;
+}
+
+body {
+	overflow-y: hidden;
+}
+
+.btn {
+	text-align: center;
+	width: 100%;
+	position: absolute;
+	top: 65%;
+	left: 0px;
+}
+
+.zc_btn {
+	display: inline-block;
+	width: 25vw;
+	background: #56a5f1;
+	text-align: center;
+	border-radius: 4px;
+	color: #fff;
+	font-size: 3vh;
+	padding: 10px;
+}
+
+.background {
+	position: absolute;
+}
+
+.foreground {
+	z-index: 10;
+	width: 100%;
+	height: 100%;
+	-webkit-background-size: 100%;
+	background-size: 100% 100%;
+}
+
+.backgroundImg {
+	width: 100vw;
+	height: 100vh;
+}
+
+.h1 {
+	position: fixed;
+	top: 3.7vh;
+	margin-left: 14vw;
+	color: #fff;
+	cursor: default;
+	font-family: microsoft yahei;
+	font-weight: lighter;
+	font-size: 5vh;
+	cursor: pointer;
+}
+
+.imgBox {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	top: 27%;
+}
+
+.imgBox img {
+	height: auto;
+	display: block;
+	margin: 0 auto;
+}
+
+.imgBox img:first-child {
+	width: 40vw;
+}
+
+.imgBox img:last-child {
+	width: 30vw;
+}
+
+a:link {
+	text-decoration: none;
+}
+
+.btn_member {
+	position: fixed;
+	top: 5.2vh;
+	right: 3vw;
+}
+
+.btn_member a {
+	display: inline-block;
+	width: 5.3vw;
+	height: 4vh;
+	line-height: 4vh;
+	font-size: 2.3vh;
+	text-align: center;
+	color: #fff;
+	border: 1px solid #fff;
+	border-radius: 4px;
+	margin-left: 1.5vw;
+	cursor: pointer;
+}
+
+.btn_member a:hover, .zc_btn:hover, .section .more:hover {
+	border-color: #75b6f5;
+	background: #75b6f5;
+}
+
+.btn_member a:active, .zc_btn:active, .section .more:active {
+	border-color: #4b94dc;
+	background: #4b94dc;
+}
+
+.number {
+	text-align: center;
+	position: absolute;
+	left: 0px;
+	top: 78%;
+	width: 100%;
+	font-size: 2.3vh;
+	color: #eeeeee;
+}
+
+.number span {
+	font-family: arial;
+	font-weight: bold;
+	display: inline;
+	margin: 0 3px;
+	color: #ebb678;
+}
+
+.scroll {
+	position: fixed;
+	top: 50%;
+	transform: translateY(-50%);
+    right: 3%;
+}
+
+.scroll {
+	list-style-type: none;
+}
+
+.scroll a {
+	text-decoration: none;
+	display: block;
+}
+
+.scroll a div {
+	background: rgba(255, 255, 255, 0.2);
+	width: 0.2vw;
+	height: 9.3vh;
+}
+
+.nav {
+	position: fixed;
+	left: 36%;
+	top: 5.2vh;
+	font-size: 2.8vh;
+}
+
+.nav>a {
+	margin-right: 7.3vw;
+	color: #fff;
+}
+
+.introduce {
+	position: absolute;
+	width: 100%;
+	display: none;
+}
+
+.introduce h1 {
+	color: #fff;
+	width: 100%;
+	text-align: center;
+	margin-top: 10%;
+	font-size: 7.8vh;
+	font-family: microsoft yahei;
+	font-weight: lighter;
+}
+
+.introduce h4 {
+	color: #fff;
+	text-align: center;
+	margin-left: 28%;
+	margin-right: 28%;
+	margin-top: 10%;
+	font-family: microsoft yahei;
+	line-height: 6.2vh;
+	font-size: 2.5vh;
+	font-weight: lighter;
+}
+
+.tipBox {
+	position: fixed;
+	padding-top: 3.1vh;
+	display: none;
+	z-index: 999;
+}
+
+.tipBox > .tip {
+	min-width: 8.7vw;
+	height: auto;
+	padding: 1vh 0px;
+	background: rgba(0, 0, 0, 0.8);
+	text-align: center;
+	border-radius: 4px;
+}
+
+.tip:before {
+	content: '';
+	display: block;
+	width: 0px;
+	height: 0px;
+	border: transparent 0.58vw solid;
+	border-bottom: rgba(0, 0, 0, 0.8) 0.58vw solid;
+	margin-top: -3.2vh;
+	margin-left: 1.8vw;
+}
+
+.tip a {
+	color: #fff;
+	display: block;
+	font-size: 2.3vh;
+	font-family: microsoft yahei;
+	padding: 1vh;
+	cursor: pointer;
+}
+
+.tip a:first-child {
+	margin-top: 1.5vh;
+}
+
+.tip a:hover {
+	background: #009dff;
+}
+
+.category {
+	display: inline-block;
+	vertical-align: top;
+	width: 8.7vw;
+}
+
+.category a:first-child:hover {
+	background: none;
+}
+
+.category a:not(:first-child) {
+	font-size: 1.7vh!important;
+}

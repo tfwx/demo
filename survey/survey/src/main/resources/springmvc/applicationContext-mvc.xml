@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<context:property-placeholder location="classpath:db.properties, classpath:settings.properties" ignore-unresolvable="true"/>
+
+
+	<!-- 扫描controller -->
+	<context:component-scan base-package="com.ylsh.survey.controller" />
+	
+	<!-- 全局跨域配置 -->
+	<!-- <mvc:cors> <mvc:mapping path="/**" allowed-origins="*"/> </mvc:cors> -->
+
+
+	<!-- 使用mvc:annotation-driven代替注解映射器和注解适配器的配置 -->
+	<mvc:annotation-driven conversion-service="conversionService" />
+	
+	
+	<!-- Converter转换工厂 -->
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean" >
+		<property name="converters">			
+			<list>
+				<!-- 去掉前后空格 -->
+				<bean class="com.ylsh.survey.common.CustomerConverter" />
+				<!-- 日期转换器 -->
+			</list>
+		</property>
+	
+	</bean>
+
+
+	<!-- 视图解析器(解析JSP，默认使用JSTL标签) -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="1" />
+	</bean>
+
+
+	<!-- 静态资源处理(将静态资源的处理经由Spring MVC框架交回Web应用服务器处理) -->
+	<!-- <mvc:default-servlet-handler /> -->
+
+	<!-- 静态资源处理(由Spring MVC框架自己处理静态资源，并添加一些有用的附加值功能) -->
+	<mvc:resources mapping="/static/**" location="/static/"
+		cache-period="31536000" />
+
+
+
+	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 拦截所有请求 -->
+			<mvc:mapping path="/**" />
+
+			<!-- 对静态资源放行 -->
+			<mvc:exclude-mapping path="/static/**" />
+			<!-- 对主页和注册页面放行 -->
+			<mvc:exclude-mapping path="/" />
+			<mvc:exclude-mapping path="/login" />
+			<mvc:exclude-mapping path="/register" />
+			<!-- 对登陆注册请求放行 -->
+			<mvc:exclude-mapping path="/user/login" />
+			<mvc:exclude-mapping path="/user/register/*" />
+			<!-- 对获取验证码请求放行 -->
+			<mvc:exclude-mapping path="/user/sendcode" />
+
+			<!-- 对预览页面放行 -->
+			<mvc:exclude-mapping path="/naire/preview/*" />
+			<!-- 对提交填写数据请求放行 -->
+			<mvc:exclude-mapping path="/naire/answer/record" />
+
+			<!-- 对下载问卷模板请求放行 -->
+			<mvc:exclude-mapping path="/naire/download/*" />
+			
+			<!-- 对问卷库放行 -->
+			<mvc:exclude-mapping path="/naire/lib" />
+			
+			<!-- 对找回密码页面放行 -->
+			<mvc:exclude-mapping path="/forgetpwd" />
+			
+			<!-- 对重设密码请求放行 -->
+			<mvc:exclude-mapping path="/user/resetpwd/*" />
+
+			<!-- 配置拦截器类 -->
+			<bean class="com.ylsh.survey.interceptor.AuthInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<!-- 上传文件拦截，设置最大上传文件大小   10M=10*1024*1024(B)=10485760 bytes -->  
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10485760" />
+	</bean>
+	
+	
+	
+	
+
+
+</beans>
